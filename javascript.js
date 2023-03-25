@@ -10,18 +10,18 @@
 //-paper beats rock,
 //-rock beats scissors,
 
+
 let choiceArray = ["rock", "paper", "scissors"];
+
 let computerScore = 0;
-let userScore = 0;
+let userScore = 0;  
 
 
-let computerChoice = choiceArray[Math.round(Math.random()*2)];
 
+function playRound(){
+    let computerSelection = choiceArray[Math.round(Math.random()*2)];
+    let playerSelection = prompt ("write to console one of the following choises:\n rock / paper / scissors").toLowerCase();
 
-let userChoice = prompt ("write to console one of the following choises:\n rock / paper / scissors").toLowerCase();
-
-
-function playRound(playerSelection, computerSelection){
     switch(playerSelection){
         case "rock":
             if(computerSelection == playerSelection){
@@ -65,4 +65,22 @@ function playRound(playerSelection, computerSelection){
         default:
     }
 }
+function game (){
+    let rounds = prompt("type in how many rounds youd like to play min is 3 rounds max is 10 rounds");
+    for (let i = 0; i < rounds; i++){
+        playRound();
+    }
+    calcScore(computerScore, userScore);
+}
+// computer score =scoreA, player score = scoreB
+function calcScore(scoreA , scoreB){
+    if(scoreA == scoreB){
+        console.log("this session is a tie");
+    }else if (scoreA > scoreB){
+        console.log("computer wins this session")
+    }else{
+        console.log("You win this session!")
+    }
+}
 
+game();
