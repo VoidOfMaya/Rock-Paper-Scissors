@@ -7,9 +7,12 @@
 //function that counts and declares the winner per session
 
 
-let choiceArry = ["rock", "paper", "scissors"];
+let choiceArray = ["rock", "paper", "scissors"];
 
 
-let ComputerChoice = Math.round(Math.random()*3);
+let ComputerChoice = choiceArray[Math.round(Math.random()*2)];
 
-console.log(ComputerChoice);
+
+let userChoice = prompt ("write to console one of the following choises:\n rock / paper / scissors").toLowerCase();
+
+console.log(userChoice);
