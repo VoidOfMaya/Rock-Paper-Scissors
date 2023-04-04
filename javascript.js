@@ -37,46 +37,68 @@ function playerChoice(){
 function playRound(playerInput , aiInput){
     let scoreCount =0;
     let computerSelection = aiInput;
-    let playerSelection = playerInput; 
+    let playerSelection = playerInput;
+    const display = document.querySelector('#display'); 
+    const para = document.createElement('p');
 
     let resultText = `computer chose ${computerSelection} , you chose ${playerSelection} `; 
     switch(playerSelection){
         case choiceArray[0]:
             if(computerSelection == playerSelection){
-                console.log(`${resultText}its a tie!`);
+                if(!display.firstChild ){
+                para.textContent =`${resultText}its a tie!`;
+                display.appendChild(para);
+                } else {display.removeChild(para)}
+
             }
             else if(computerSelection == choiceArray[1]){
-                console.log(`${resultText} Computer win!`)
+              
+                para.textContent =`${resultText} Computer win!`;
+                display.appendChild(para);
                 scoreCount--;
             }
             else if(computerSelection == choiceArray[2]){
-                console.log(`${resultText} You win`);
+             
+                para.textContent =`${resultText} You win`;
+                display.appendChild(para);
                 scoreCount++;
             }
             break;
         case choiceArray[1]:
             if(computerSelection == playerSelection){
-                console.log(`${resultText} its a tie!`);
+               
+                para.textContent =`${resultText} its a tie!`;
+                display.appendChild(para);
             }
             else if(computerSelection == choiceArray[0]){
-                console.log(`${resultText} You win!`)
+              
+                para.textContent =`${resultText} You win!`;
+                display.appendChild(para);
                 scoreCount++;
             }
             else if(computerSelection == choiceArray[2]){
-                console.log(`${resultText} Computer wins!`);
+               
+                para.textContent =`${resultText} Computer wins!`;
+                display.appendChild(para);
                 scoreCount--;
             }
             break;
         case choiceArray[2]:
             if(computerSelection == playerSelection){
-                console.log(`${resultText} its s tie!`);
+                
+                para.textContent =`${resultText} its s tie!`;
+                display.appendChild(para);
             }
             else if(computerSelection == choiceArray[1]){
-                console.log(`${resultText} You wins!`)
+                
+                para.textContent =`${resultText} You wins!`;
+                display.appendChild(para);
                 scoreCount++;
             }
             else if(computerSelection == choiceArray[0]){
-                console.log(`${resultText} Computer win`);
+
+                para.textContent =`${resultText} Computer win`;
+                display.appendChild(para);
                 scoreCount--;
             }
             break;
@@ -102,8 +124,10 @@ function sessionWiner(numb){
 //main game function that launches all game related function
 function game (){
 
-    for(let i=0; i < 3; i++){
-      playerChoice();    
+    let i =0;
+    if(i < 3){
+        playerChoice();
+        i++;
     }
 
 }
