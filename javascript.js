@@ -22,24 +22,83 @@ function computerChoice(){
 
 // player choiceS
 function playerChoice(){
+    // logic objects
+    let result;
+    let computerCounter=0;
+    let playerCounter=0;
+
+    //DOM objects
     const buttons = this.document.querySelectorAll('button');
     const display = document.querySelector('#display');
+    const score = document.querySelector('#score-tracker');
+    const winnerDisplay = document.querySelector('.winner-display');
+ 
+
+
     buttons.forEach((btn) => btn.addEventListener('click', () =>{
-            playRound(btn.id, computerChoice());
-            console.log(display.childNodes.length);
+        result = playRound(btn.id, computerChoice());
+
+
+            if (result == 1){ playerCounter += 1}        //increments player wins
+            else if( result == -1)(computerCounter += 1) //increments computer wins
+            
+            //console.log(`computer wins: ${computerCounter}, player wins: ${playerCounter}`);
+
+            // keeps count of  wins for each player , and displays it to the DOM
+            const aiScore = document.createElement('p');
+            score.classList.add('airScore'); 
+            aiScore.textContent = `computer: ${computerCounter}`;
+            score.appendChild(aiScore);
+
+            const userScore =document.createElement('p');
+            score.classList.add('userScore');
+            userScore.textContent = `player: ${playerCounter}`;
+            score.appendChild(userScore);
+
+            // replaces and updates DOM child to display updated results
             if(display.childNodes.length != 1){
                 display.removeChild(display.firstChild);
-            }
-            
-    }));
+            }     
 
+            if(score.childNodes.length > 2 ){
+                score.removeChild(score.firstChild);
+                score.removeChild(score.firstChild);
+            }
+
+            // callculates the first to reach 5 wins and resets counters to 0, and displays  it in the DOM
+            if( computerCounter == 5){
+                console.log();
+                computerCounter = 0;
+                playerCounter = 0 ;
+
+                const winnerComputer = document.createElement('p');
+                winnerComputer.classList.add('winnerComputer'); 
+                winnerComputer.textContent = 'COMPUTER IS THE WINNER';
+                winnerDisplay.appendChild(winnerComputer);
+
+            }else if(playerCounter == 5){
+                console.log();
+                computerCounter = 0;
+                playerCounter = 0 ;
+
+                const winnerPlayer= document.createElement('p');
+                winnerPlayer.classList.add('winnerPlayer'); 
+                winnerPlayer.textContent = 'PLAYER IS THE WINNER';
+                winnerDisplay.appendChild(winnerPlayer);
+            }
+
+            if(winnerDisplay.childNodes.length > 1){
+                winnerDisplay.removeChild(winnerDisplay.firstChild);
+            }
+    }));
+  
 
 
 }
 
 
 
-// handles main gamelogic + keeping score by returning a number  
+// handles main gamelogic + keeping score by returning a number  returns [1 you win][-1 comuter win]
 function playRound(playerInput , aiInput){
     
     let scoreCount =0;
@@ -117,25 +176,5 @@ function playRound(playerInput , aiInput){
 
 }
 
-//handles calculatin the winner using a recived number
-function sessionWiner(numb){
-    if (gameResult == 0){
-        console.log("this sessioin is a tie");
-    }else if(gameResult > 0){
-        console.log("You are the winner of this session");
-    }else{
-        console.log("Computer is the winner of this session");
-    }     
-}
+playerChoice();
 
-//main game function that launches all game related function
-function game (){
-
-    let i =0;
-    if(i < 3){
-        playerChoice();
-        i++;
-    }
-
-}
-game();
