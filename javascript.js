@@ -23,8 +23,14 @@ function computerChoice(){
 // player choiceS
 function playerChoice(){
     const buttons = this.document.querySelectorAll('button');
+    const display = document.querySelector('#display');
     buttons.forEach((btn) => btn.addEventListener('click', () =>{
-        playRound(btn.id, computerChoice());
+            playRound(btn.id, computerChoice());
+            console.log(display.childNodes.length);
+            if(display.childNodes.length != 1){
+                display.removeChild(display.firstChild);
+            }
+            
     }));
 
 
@@ -35,20 +41,20 @@ function playerChoice(){
 
 // handles main gamelogic + keeping score by returning a number  
 function playRound(playerInput , aiInput){
+    
     let scoreCount =0;
     let computerSelection = aiInput;
     let playerSelection = playerInput;
     const display = document.querySelector('#display'); 
     const para = document.createElement('p');
-
     let resultText = `computer chose ${computerSelection} , you chose ${playerSelection} `; 
+
     switch(playerSelection){
         case choiceArray[0]:
             if(computerSelection == playerSelection){
-                if(!display.firstChild ){
+            
                 para.textContent =`${resultText}its a tie!`;
                 display.appendChild(para);
-                } else {display.removeChild(para)}
 
             }
             else if(computerSelection == choiceArray[1]){
@@ -105,6 +111,7 @@ function playRound(playerInput , aiInput){
         default:
     }
 
+    
     return scoreCount;
 
 
