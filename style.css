@@ -1,0 +1,21 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 3px dotted;
+    align-items: center;
+}
+.button-container{
+    display: flex;
+    align-content: center;
+}
+.btn{
+    padding: 30px;
+    margin: 6px;
+
+}
+.winner-display{
+    display: flex;
+    flex-direction: row;
+
+}

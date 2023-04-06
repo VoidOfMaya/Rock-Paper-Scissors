@@ -48,11 +48,15 @@ function playerChoice(){
             const aiScore = document.createElement('p');
             score.classList.add('airScore'); 
             aiScore.textContent = `computer: ${computerCounter}`;
+            aiScore.style.padding ='20px';
+            aiScore.style.border = '3px dotted';
             score.appendChild(aiScore);
 
             const userScore =document.createElement('p');
             score.classList.add('userScore');
             userScore.textContent = `player: ${playerCounter}`;
+            userScore.style.padding ='20px';
+            userScore.style.border = '3px dotted';
             score.appendChild(userScore);
 
             // replaces and updates DOM child to display updated results
